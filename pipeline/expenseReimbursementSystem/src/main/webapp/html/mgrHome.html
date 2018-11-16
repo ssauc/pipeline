@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="css/mgrers.css"/>
+    <title>Expense Reimbursement System</title>
+  </head>
+  <body class ="container">
+
+<a class="nav-link active" id="logo" href="#"><img src="image/front-logo3.png" alt="Logo" height="100px" width="130px" /></a>  
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link title" data-toggle="modal" data-target="#statusModalCenter" href="#">Status <i class="fas fa-plus-square"></i></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link title" href="../logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+  </li>
+</ul>
+
+	
+	<nav class ="empnav">
+  <div class="nav nav-tabs container" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active empnav" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+    <a class="nav-item nav-link empnav" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</a>
+    <a class="nav-item nav-link empnav" id="nav-contact-tab" data-toggle="tab" href="#nav-reimbursements" role="tab" aria-controls="nav-contact" aria-selected="true">Reimbursements</a>
+    <a class="nav-item nav-link empnav" id="nav-contact-tab" data-toggle="tab" href="#nav-employee" role="tab" aria-controls="nav-contact" aria-selected="true">Employees</a>
+  </div>
+</nav>
+<div class="tab-content empclass" id="nav-tabContent">
+   <!-- Home page starts here -->
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+   <h2 id= "welcome">Employee Home tab</h2>
+    <div class="container grid">
+  
+  <div class="row">
+   <div class="col">
+		  <ul class="list-group">
+		  <li class="list-group-item d-flex justify-content-between align-items-center active">
+		    Reimbursement By Type
+		  </li>
+		  <li class="list-group-item d-flex justify-content-between align-items-center">
+		    Approved <span class="badge badge-primary badge-pill" name="bapproved">0</span>
+		  </li>
+		  <li class="list-group-item d-flex justify-content-between align-items-center">
+		    Pending <span class="badge badge-primary badge-pill" name="bpending">0</span>
+		  </li>
+		   <li class="list-group-item d-flex justify-content-between align-items-center">
+		    Under Review <span class="badge badge-primary badge-pill" name="bunderReview">0</span>
+		  </li>
+		   <li class="list-group-item d-flex justify-content-between align-items-center">
+		    Denied <span class="badge badge-primary badge-pill" name ="bdenied">0</span>
+		  </li>
+		 </ul>
+   </div>
+   
+    <div class="col">
+		<div class="card" style="width: 25rem;">
+		  <div class="card-body">
+		    <h5 class="card-title">Profile</h5>
+		    <h6 class="card-subtitle mb-2 text-muted" id="profileFirstName">First Name</h6>
+		    <h6 class="card-subtitle mb-2 text-muted" id="profileLastName">Last Name</h6>
+		    <h6 class="card-subtitle mb-2 text-muted" id="profileEmail">Email</h6>
+		    <h6 class="card-subtitle mb-2 text-muted" id="profileUserName">User Name</h6>
+		  </div>
+		</div>
+	</div>
+  </div>
+  	
+  <br/>
+	<div class="row">
+	  <div class="col">
+		 <ul class="list-group list-group-flush" id="statusTable">
+		  <li class="list-group-item list-group-item-secondary">Status</li>
+		  <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+		  <li class="list-group-item">Morbi leo risus</li>
+		  <li class="list-group-item">Porta ac consectetur ac</li>
+		  <li class="list-group-item">Vestibulum at eros</li> -->
+		</ul>
+	</div>
+	
+	</div>
+	
+  </div>
+   
+   
+  </div>
+  <!-- Profile section starts here -->
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  <h2>Profile</h2>
+  
+  <form class="container">
+  
+	  <div class="alert alert-danger" role="alert" id="userExist" hidden=true>
+	  		User Name already Exists!
+	  </div>
+	  
+	  <div class="alert alert-danger" role="alert" id="fieldsEmpty" hidden=true>
+	  		There are empty fields !!!
+	  </div>
+	  
+	  <div class="form-group">
+	    <label for="exampleFormControlInput1">First Name</label>
+	    <input type="text" class="form-control" id="exampleFormControlInput1" value="" name ="firstName" required  disabled/>
+	  </div>
+	 
+	  <div class="form-group">
+	    <label for="exampleFormControlInput1">Last Name</label>
+	    <input type="text" class="form-control" id="exampleFormControlInput2" value="" name ="lastName" required disabled/>
+	  </div>
+	  
+	  <div class="form-group">
+	    <label for="exampleFormControlInput1">User Name</label>
+	    <input type="text" class="form-control" id="exampleFormControlInput3" value="" name = "userName" required disabled/>
+	  </div>
+	 
+	  <div class="form-group">
+	    <label for="exampleFormControlInput1">Email address</label>
+	    <input type="email" class="form-control" id="exampleFormControlInput4" value="" name = "email" required disabled/>
+	  </div>
+	 <p>Note: When you save your changes you will be required to log back in. </p>
+	  <button type="button" class="btn btn-info" id="editBTN">Edit</button>
+	  <button type="button" class="btn btn-primary" id="editUser">Save</button>
+	<br/>
+	<br/>
+ </form>
+  </div>
+  
+  <!-- Reimbursements page -->
+   <div class="tab-pane fade" id="nav-reimbursements" role="tabpanel" aria-labelledby="nav-profile-tab">
+<!--   <h2>Reimbursements</h2> -->
+  <!-- Reimbursement Section starts here -->
+<nav class="nav navbar navbar-dark bg-dark">
+  <a class="nav-link active" href="#">Reimbursements </a> 
+  <a data-toggle="modal" data-target="#reimModalCenter" class="nav-link" href="#">Change Status on Reimbursement</a>  
+   <div class="col-auto my-1">
+      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Status</label>
+      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" onchange="filter()">
+        <option value="All">All</option>
+        <option value="Approved">Approved</option>
+        <option value="Pending">Pending</option>
+        <option value="Denied">Denied</option>
+        <option value="Under Review">Under Review</option>
+      </select>
+    </div>
+  
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="UserName / All" aria-label="Search" name ="searchUserReim">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id ="searchReim">Search</button>
+  </form>
+  
+</nav>
+		<!-- All reimbursements list  -->
+	<table class="table table-hover" id="filterTable">
+	  <thead class="thead-dark">
+	    <tr>
+	      <th scope="col">ID</th>
+	      <th scope="col">Status</th>
+	      <th scope="col">Description</th>
+	      <th scope="col">Type</th>
+	      <th scope="col">username</th>
+	      <th scope="col">Amount</th>
+	      <th scope="col">Updated By</th>
+	      <th scope="col">Update</th>
+	    </tr>
+	  </thead>
+	  <tbody id ="reimbursementTable">
+	  <!--   <tr>
+	      <th scope="row">1</th>
+	      <td>Mark</td>
+	      <td>Otto</td>
+	      <td>@mdo</td>
+	      <td>@mdo</td>
+	    </tr>
+	    <tr>
+	      <th scope="row">2</th>
+	      <td>Jacob</td>
+	      <td>Thornton</td>
+	      <td>@fat</td>
+	      <td>@mdo</td>
+	    </tr>
+	    <tr>
+	      <th scope="row">3</th>
+	      <td colspan="2">Larry the Bird</td>
+	      <td>@twitter</td>
+	      <td>@mdo</td>
+	    </tr> -->
+	  </tbody>
+	</table>
+</div>  
+    <!-- Employee page -->
+<div class="tab-pane fade" id="nav-employee" role="tabpanel" aria-labelledby="nav-profile-tab">
+<!--   <h2>Employees</h2> -->
+    <!-- Reimbursement Section starts here -->
+<nav class="nav navbar navbar-dark bg-dark">
+  <a class="nav-link active" href="#">Employees </a> 
+  <!-- <a class="nav-link" href="#">Employees</a> -->
+  <!-- <a class="nav-link" href="#Denied"></a> -->
+  <!-- <a class="nav-link" href="#underReview">Under Review</a> -->
+  <a data-toggle="modal" data-target="#employeeModalCenter" class="nav-link" href="#">Create Employee</a>
+  
+  	<form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Username / All" aria-label="Search" name="searchBar">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="search">Search</button>
+    </form>
+    
+</nav>
+	<!-- All Employees  -->
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Email</th>
+      <th scope="col">UserName</th>
+    </tr>
+  </thead>
+  <tbody id = "employeeTable">
+    <!-- <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+      <td>@mdo</td>
+    </tr> -->
+  </tbody>
+</table>
+</div>  
+
+
+
+<div class="modal fade" id="reimModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Reimbursement Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body form-group mx-sm-3 mb-2">
+      <div class="alert alert-danger" role="alert" id="reimApproval" hidden=true>
+	  			There are empty fields !!!
+	  </div>
+	  
+      <label for="exampleInputEmail1">Reimbursement ID</label>
+        <input class="form-control" type="text" name="bookId" id="bookId" value="" required/>
+       
+        <div class="col-auto my-1">
+        	<label for="exampleInputEmail1">Reimbursement Status</label>
+	      	<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Status</label>
+	      	<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="optionsStatus" Required>
+		        <option value="0">Approved</option>
+		        <option value="1">Pending</option>
+		        <option value="2">Denied</option>
+		        <option value="3">Under Review</option>
+	      	</select>
+    	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="close3">Close</button>
+        <button type="button" class="btn btn-primary" id="approveReim">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="employeeModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Insert Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+      <div class="modal-body">
+      		<div class="alert alert-danger" role="alert" id="userExist2" hidden>
+  				User Name Already exists!
+			</div>
+			 <div class="alert alert-danger" role="alert" id="fieldsEmptyAdd" hidden=true>
+	  			There are empty fields !!!
+	  		</div>
+      	   <label for="exampleFormControlSelect1">First Name</label>
+      	  <input type="text" class="form-control" id="newFirstName" aria-describedby="firstName" placeholder="Enter First Name" required/>
+      	  
+      	  <label for="exampleFormControlSelect2">Last Name</label>
+      	  <input type="text" class="form-control" id="newLastName" aria-describedby="lastName" placeholder="Enter Last Name" required/>
+      	  
+      	  <label for="exampleFormControlSelect3">User Name</label>
+      	  <input type="text" class="form-control" id="newUserName" aria-describedby="userName" placeholder="User Name" required/>
+      	  
+      	  <label for="exampleFormControlSelect4">Password</label>
+      	  <input type="password" class="form-control" id="newPassword" aria-describedby="password" placeholder="Password" required/>
+      	  
+      	  <label for="exampleFormControlSelect5">Email</label>
+          <input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Enter email" required/>
+          
+          <label for="exampleFormControlSelect6">Role</label>
+		    <select class="form-control" id="newRole" required>
+		      <option value=0>Manager</option>
+		      <option value=1>Employee</option>
+		    </select>    
+      </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="close">Close</button>
+        <button type="submit" class="btn btn-primary" id="insertEmployee">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="statusModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Insert Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">	   
+      	 <div class="alert alert-danger" role="alert" id="statusEmptyAdd" hidden=true>
+	  			There are empty fields !!!
+	  	 </div>
+      	  <label for="exampleFormControlSelect2">Type</label>
+	      	  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="typeStatus" required>
+			        <option value="Info">Info</option>
+			        <option value="Warning">Warning</option>
+		      </select>
+	      <label for="exampleFormControlSelect1">Description</label>
+      	  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name ="descrStatus" required></textarea>
+      	     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="close2">Close</button>
+        <button type="submit" class="btn btn-primary" id="insertStatus">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="js/backToTopButton.js"></script>
+<script src="js/managerProfilePage.js"></script>
+</html>
